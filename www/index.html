@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Address Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+<!-- Styles -->
+<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style
+	
+	<!-- Custom styles for this template -->
+    <link href="index.css" rel="stylesheet">
+	
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+ 
+ 
+  <body style="background:black">
+
+  
+  
+  
+  <!--===============NAVBAR====================== -->
+    <div class="navbar-wrapper">
+      <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+      <div class="container">
+
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+		  
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+			
+			<a style="color: white"class="brand" href="#">Address Book</a>
+
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li><a href="index.html">Home</a></li>
+			  </ul>
+			  <form class="navbar-form pull-right">
+					<a href="#addContactModal" class="btn btn-primary btn-small" data-toggle="modal"><i class="icon-user icon-white"></i> Add Contact</a>
+			  </form>
+            </div><!--/.nav-collapse -->
+          </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+      </div> <!-- /.container -->
+    </div><!-- /.navbar-wrapper -->
+  
+	
+	<!-- =================Modals======================= -->
+	<!--addContactModal-->
+	<div id="addContactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Add new Contact</h3>
+	  </div>
+	  <div class="modal-body">
+		<form class="form-signin">
+			<h3 class="form-signin-heading">Please enter contact information</h3>
+			<input type="text" class="input-block-level" placeholder="Name">
+			<input type="text" class="input-block-level" placeholder="Address">
+			<input type="text" class="input-block-level" placeholder="Phone Nunmber">
+			<button class="btn btn-primary" type="submit">Add Contact</button>
+		 </form>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+		
+	<!-- ==================Container===================== -->
+    <div class="container" style="background-color:black">
+
+			<div>
+				<p style="color:white">Contacts</p>
+			</div>
+			
+			
+			<div id="list_table" class="list">
+				<!-- Table -->
+				<table class="table table-condensed table-hover "> <!--table-bordered table-striped-->
+				  <thead>
+					<tr>
+					  <th></th>
+					  <th>Name</th>
+					  <th>Address</th>
+					  <th>Phone Nunber</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr>
+					  <td><button class="close">&times;</button></td>
+					  <td>fdslfl lsadjflsdkjf</td>
+					  <td>23 sw 5 st Miami, FL </td>
+					  <td>78655567899</td>
+					</tr>
+					<tr>
+					  <td><button class="close">&times;</button></td>
+					  <td>fdslfl lsadjflsdkjf</td>
+					  <td>23 sw 5 st Miami, FL </td>
+					  <td>78655567899</td>
+					</tr>
+					<tr>
+					  <td><button class="close">&times;</button></td>
+					  <td>fdslfl lsadjflsdkjf</td>
+					  <td>23 sw 5 st Miami, FL </td>
+					  <td>78655567899</td>
+					</tr>
+					<tr>
+					  <td><button class="close">&times;</button></td>
+					  <td>fdslfl lsadjflsdkjf</td>
+					  <td>23 sw 5 st Miami, FL </td>
+					  <td>78655567899</td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>	
+			
+			<div class="container">
+				<form onsubmit="">
+				  <fieldset>
+					<legend style="color:white">Search Contacts</legend>
+					<input id="ytSearchField" type="text" placeholder="type a contact name">
+					<button id="video_search" type="submit" class="btn btn-primary btn-medium" onclick="getSearch()">search &raquo</button>
+					<div id="youtubeDivSearch"></div>
+				  </fieldset>
+				</form>
+			</div> 
+
+    <hr style="border-color:#006dcc;">
+	<footer class="footer" style="color: white">
+		<p align="center">&copy; Address Book 2014 by <a style="color: white" align="center" href="http://www.cise.ufl.edu/~rledesma" target="_blank"> Rainer Ledesma</a> <p/>
+		
+	</footer>
+	
+	
+	<!--===============JavaScript======================= -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+
+  </body>
+</html>
