@@ -16,17 +16,11 @@
         padding-top: 60px;
         padding-bottom: 40px;
       }
-    </style
+    </style>
 	
 	<!-- Custom styles for this template -->
     <link href="index.css" rel="stylesheet">
-	
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
@@ -34,14 +28,16 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  
+  
+  <!--JQuery-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  
   </head>
  
  
   <body style="background:black">
 
-  
-  
-  
   <!--===============NAVBAR====================== -->
     <div class="navbar-wrapper">
       <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
@@ -57,13 +53,10 @@
               <span class="icon-bar"></span>
             </button>
 			
-			<a style="color: white"class="brand" href="#">Address Book</a>
+			<a style="color: white" class="brand" href="#">Address Book</a>
 
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
-              <ul class="nav">
-                <li><a href="index.html">Home</a></li>
-			  </ul>
 			  <form class="navbar-form pull-right">
 					<a href="#addContactModal" class="btn btn-primary btn-small" data-toggle="modal"><i class="icon-user icon-white"></i> Add Contact</a>
 			  </form>
@@ -82,12 +75,32 @@
 		<h3 id="myModalLabel">Add new Contact</h3>
 	  </div>
 	  <div class="modal-body">
-		<form class="form-signin">
+		<form action="" method="" accept-charset="utf-8" class="form-signin">
 			<h3 class="form-signin-heading">Please enter contact information</h3>
-			<input type="text" class="input-block-level" placeholder="Name">
-			<input type="text" class="input-block-level" placeholder="Address">
-			<input type="text" class="input-block-level" placeholder="Phone Nunmber">
-			<button class="btn btn-primary" type="submit">Add Contact</button>
+			<input id="inputName" type="text" class="input-block-level" placeholder="Name">
+			<input id="inputAddress" type="text" class="input-block-level" placeholder="Address">
+			<input id="inputPhone" type="text" class="input-block-level" placeholder="Phone Nunmber">
+			<button id="btnAddContact" class="btn btn-primary" type="submit">Add Contact</button>
+		 </form>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+	
+	<!--updateContactModal-->
+	<div id="updateContactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Update Contact</h3>
+	  </div>
+	  <div class="modal-body">
+		<form action="" method="" accept-charset="utf-8" class="form-signin">
+			<h3 class="form-signin-heading">Modify contact information</h3>
+			<input id="inputName" type="text" class="input-block-level" placeholder="Name">
+			<input id="inputAddress" type="text" class="input-block-level" placeholder="Address">
+			<input id="inputPhone" type="text" class="input-block-level" placeholder="Phone Nunmber">
+			<button id="btnAddContact" class="btn btn-primary" type="submit">Update Contact</button>
 		 </form>
 	  </div>
 	  <div class="modal-footer">
@@ -98,73 +111,304 @@
 	<!-- ==================Container===================== -->
     <div class="container" style="background-color:black">
 
-			<div>
-				<p style="color:white">Contacts</p>
+			<div class="container">
+				<div>
+					<p style="color:white">Contacts</p>
+				</div>
+				<div id="list_table" class="contactList">
+					<div>
+					<!-- Table -->
+					<table id="contactTable" class="table table-condensed table-hover "> <!--table-bordered table-striped-->
+					  <thead>
+						<tr>
+						  <th>Name</th>
+						  <th>Address</th>
+						  <th>Phone Number</th>
+						</tr>
+					  </thead>
+					  <tbody>
+							<!--table boody-->
+					  </tbody>
+					</table>
+					</div>
+				</div>	
+				
+				<div style="color:black" id="contactViewer" class="contactView">
+				
+					<div id="weather">
+						<!--<script type="text/javascript" src="http://voap.weather.com/weather/oap/USFL0163?template=GENXV&par=3000000007&unit=0&key=twciweatherwidget"></script>-->
+						<div align="center" style="width:130px;font-color:#ddd;font-weight:bold;margin:0px 0px 0px 0px;">
+						<a style="font-size:14px; text-decoration:none; color:white" href="http://www.weatherforecastmap.com/usa/Gainesville/" target="_blank">Weather in Gainesville</a>
+						<script src="http://www.weatherforecastmap.com/weather2001F.php?zona=usa_gainesville"></script>
+						<div align="center" style="font-color:#ddd;font-weight:normal;"></div></div>
+					</div>
+				
+					<p>Contact Information</p>
+					<p id="contactViewName">contact name</p>
+					<p id="contactViewAddress">contact address</p>
+					<p id="contactViewPhone">contact phone</p>
+					<a id="btnUpdateContact" href="#updateContactModal" class="btn btn-primary btn-small" data-toggle="modal"><i class="icon-user icon-white"></i> Update</a>
+					<a id="btnDelContact" class="btn btn-danger btn-small"><i class=" icon-remove-sign icon-white"></i> Remove</a>
+					<p></p>
+					
+					<div id="deleteAlert" class="alert alert-block alert-error fade in">
+						<h4 class="alert-heading">Do you really want to delete this contact?</h4>
+						<h5>this action can't be reversed...</h5>
+						<p>
+						  <a class="btn btn-danger" href="#">Delete</a> <a id="cancelAlert" class="btn" href="#">Cancel</a>
+						</p>
+					</div>
+
+				</div>
+				
+				
+				<div id="searchView" class="container">
+					<form onsubmit="">
+					  <fieldset>
+						<legend style="color:white">Search Contacts</legend>
+						<input id="searchContact" type="text" placeholder="type a contact name"></input>
+						<button id="btnSearchContact" class="btn btn-primary btn-medium">search &raquo</button>
+						<div id="youtubeDivSearch"></div>
+					  </fieldset>
+					</form>
+					
+					<div>
+						<!-- Table -->
+						<table id="searchTable" class="table table-condensed table-hover "> 
+						  <thead>
+							<tr>
+							  <th>Name</th>
+							  <th>Address</th>
+							  <th>Phone Number</th>
+							</tr>
+						  </thead>
+						  <tbody>
+								<!--table boody-->
+						  </tbody>
+						</table>
+					</div>
+					
+				</div> 
+				
 			</div>
 			
 			
-			<div id="list_table" class="list">
-				<!-- Table -->
-				<table class="table table-condensed table-hover "> <!--table-bordered table-striped-->
-				  <thead>
-					<tr>
-					  <th></th>
-					  <th>Name</th>
-					  <th>Address</th>
-					  <th>Phone Nunber</th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <td><button class="close">&times;</button></td>
-					  <td>fdslfl lsadjflsdkjf</td>
-					  <td>23 sw 5 st Miami, FL </td>
-					  <td>78655567899</td>
-					</tr>
-					<tr>
-					  <td><button class="close">&times;</button></td>
-					  <td>fdslfl lsadjflsdkjf</td>
-					  <td>23 sw 5 st Miami, FL </td>
-					  <td>78655567899</td>
-					</tr>
-					<tr>
-					  <td><button class="close">&times;</button></td>
-					  <td>fdslfl lsadjflsdkjf</td>
-					  <td>23 sw 5 st Miami, FL </td>
-					  <td>78655567899</td>
-					</tr>
-					<tr>
-					  <td><button class="close">&times;</button></td>
-					  <td>fdslfl lsadjflsdkjf</td>
-					  <td>23 sw 5 st Miami, FL </td>
-					  <td>78655567899</td>
-					</tr>
-				  </tbody>
-				</table>
-			</div>	
 			
-			<div class="container">
-				<form onsubmit="">
-				  <fieldset>
-					<legend style="color:white">Search Contacts</legend>
-					<input id="ytSearchField" type="text" placeholder="type a contact name">
-					<button id="video_search" type="submit" class="btn btn-primary btn-medium" onclick="getSearch()">search &raquo</button>
-					<div id="youtubeDivSearch"></div>
-				  </fieldset>
-				</form>
-			</div> 
 
     <hr style="border-color:#006dcc;">
 	<footer class="footer" style="color: white">
-		<p align="center">&copy; Address Book 2014 by <a style="color: white" align="center" href="http://www.cise.ufl.edu/~rledesma" target="_blank"> Rainer Ledesma</a> <p/>
+		<p align="center">&copy; Address Book 2014 by <a style="color: white" align="center" href="http://www.cise.ufl.edu/~rledesma" target="_blank"> Rainer Ledesma</a> </p>
 		
 	</footer>
 	
 	
 	<!--===============JavaScript======================= -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Placed at the end of the document so pages load faster -->
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
+	
+	<script type="text/javascript">
+		
+		// DOM Ready
+		$(document).ready(function() {
+		  //populate the contacts table on initial page load
+		  refreshContacts();
+		  $(".alert").hide();//.alert('close');
+		});
+		
+		//events
+		$('#contactTable').on('click', 'tr', showUserInfo);
+		$('#btnAddContact').on('click', addContact);
+		$('#btnDelContact').on('click', deleteContact);
+		$('#btnUpdateContact').on('click', updateContact);
+		$('#btnSearchContact').on('click', function(){
+			var key = 'name';
+			var searchName = $('#searchContact').val();
+			var searchResult = searchContact(contactData, key, searchName);
+			console.log('***search results: '+searchResult);
+			var tmpContact;
+			$.each(searchResult, function(){ //for each item in our JSON, add a contact to the table
+				tmpContact += '<tr class="clickableRow" href="#" rel="' + this.name + '">';							
+				tmpContact += '<td>' + this.name + '</td>';
+				tmpContact += '<td>' + this.address + '</td>';
+				tmpContact += '<td>' + this.phone + '</td>';
+				tmpContact += '</tr>';
+				// Inject the whole content string into our existing HTML table
+				$('#searchTable tbody').html(tmpContact);
+			});
+			return false;
+		});
+		
+		
+		$('#cancelAlert').on('click', function(){
+			$(".alert").hide();
+		});
+		
+		
+		var contactData = [];
+		
+		//delete User link click
+		//$('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
+		
+			
+		//refresh contacts table
+		function refreshContacts() { 
+			var tmpContact='';
+			$.getJSON("/allContacts", function(data){ //JQuery Ajax call for JSON
+				contactData = data;
+				$.each(data, function(){ //for each item in our JSON, add a contact to the table
+					tmpContact += '<tr class="clickableRow" href="#" rel="' + this.name + '">';
+					//tmpContact += '<td><button id="btnDelCo" class="btn btn-mini btn-inverse"><i class="icon-remove-sign icon-white"></i></button></td>';
+					tmpContact += '<td>' + this.name + '</td>';
+					tmpContact += '<td>' + this.address + '</td>';
+					tmpContact += '<td>' + this.phone + '</td>';
+					tmpContact += '</tr>';
+					// Inject the whole content string into our existing HTML table
+					$('#contactTable tbody').html(tmpContact);
+				});
+			});
+		};
+		
+		//show contact info
+		function showUserInfo(event) {
+		  console.log('***on showUserInfo...');
+		  console.log('***row clicked: '+ $(this).text());
+		  console.log('***row clicked: '+ $(this).html());		  
+		  
+		  event.preventDefault();
+		  
+		  var thisName = $(this).attr('rel');
+
+		  var arrayPosition = contactData.map(function(arrayItem) { return arrayItem.name; }).indexOf(thisName);
+		  var thisContact = contactData[arrayPosition];
+		  console.log('***thisContact...'+ JSON.stringify(thisContact));
+
+		  $('#contactViewName').text(thisContact.name);
+		  $('#contactViewAddress').text(thisContact.address);
+		  $('#contactViewPhone').text(thisContact.phone);
+		  
+		  $('#updateContactModal #inputName').text(thisContact.name);
+		  $('#updateContactModal inputAddress').text(thisContact.address);
+		  $('#updateContactModal inputPhone').text(thisContact.phone);
+		  
+		}
+		
+		
+		//add new contact
+		function addContact() {			  
+			//compile all contact info into one object
+			var newContact = {
+			  'name': $('#inputName').val(),
+			  'address': $('#inputAddress').val(),
+			  'phone': $('#inputPhone').val()
+			}
+			
+			// use AJAX to post the object to our add user service
+			$.ajax({
+			  type: 'POST',
+			  data: newContact,
+			  url: '/addContact',
+			  dataType: 'JSON'
+			}).done(function( response ) {
+
+			  // check for successful (blank) response
+			  if (response.msg === '') {
+				// clear the form inputs
+				$('#addContactForm input').val('');
+				// update the table
+				refreshContacts();
+			  }
+			});
+		};
+		
+		//update contact
+		function updateContact(event){
+			//$('#inputName').attr('href, 'javascript:$('#modal .modal-body').load('index.html',function(e){$('#modal').modal('show');});';)
+		
+		};
+		
+		// delete Contact
+		function deleteContact(event) {
+
+			//event.preventDefault();
+			var thisName = document.getElementById("contactViewName").innerHTML;
+			console.log('***deleting contact: '+ thisName);
+			//confirmation dialog
+			$("#deleteAlert").show();
+			var confirmation = confirm('Are you sure you want to delete this contact?');
+			
+			//if deletion confirmed
+			if (confirmation === true) {
+				var arrayPosition = contactData.map(function(arrayItem) { return arrayItem.name; }).indexOf(thisName);
+				var thisContact = contactData[arrayPosition];
+				console.log('***thisContact...'+ JSON.stringify(thisContact));
+				console.log('***thisContact ID...'+ thisContact._id);
+				
+				$.ajax({
+					type: 'DELETE',				
+					async: true,
+					url: '/deleteContact/' + thisContact._id
+				}).done(function( response ) {
+					//check for a successful (blank) response
+					if (response.msg === '') {
+					  console.log("sfsdfsd");
+					}else {
+						alert('Error: ' + response.msg);
+					}
+					console.log('***contact deleted');
+					//refresh 
+					refreshContacts();
+					});
+			}
+			else {
+				return false; //if deletion not confirmed
+			}
+		};			
+		
+		
+		function searchContact(obj, key, val) {
+			var objects = [];
+			for (var i in obj) {
+				if (!obj.hasOwnProperty(i)) continue;
+				if (typeof obj[i] == 'object') {
+					objects = objects.concat(searchContact(obj[i], key, val));    
+				} else 
+				//if key matches and value matches or if key matches and value is not passed (eliminating the case where key matches but passed value does not)
+				if (i == key && obj[i] == val || i == key && val == '') { //
+					objects.push(obj);
+				} else if (obj[i] == val && key == ''){
+					//only add if the object is not already in the array
+					if (objects.lastIndexOf(obj) == -1){
+						objects.push(obj);
+					}
+				}
+			}
+			return objects;
+		}
+		
+		//search contact	
+		function searchContact1(obj, key, searchName){
+		
+			console.log('***searching for: '+searchName);
+			
+			var searchResult = [];
+			
+			for (var i in obj) {
+				if (!obj.hasOwnProperty(i)) continue;
+				if (typeof obj[i] == 'object') {
+					searchResult = searchResult.concat(searchContact(obj[i]), key, searchName);
+				} else if (i == key && obj[key] == searchName) {
+					searchResult.push(obj[i]);
+				}
+			}
+			return searchResult;
+			
+		};
+		
+		
+	</script>
 
   </body>
+  
+  
 </html>

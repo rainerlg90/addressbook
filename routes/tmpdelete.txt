@@ -1,0 +1,40 @@
+var mongo = require('mongodb');
+var mongoose = require("mongoose");
+
+var MONGOLAB_URI = "mongodb://rainerlg90:mongolab5@ds047057.mongolab.com:47057/heroku_app23916129";
+
+var mongooseUri = process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/mydb';
+
+//Connecting to mongolab database
+mongoose.connect(mongooseUri, function (err, res) {
+  if (err) { 
+    console.log ('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ERROR connecting to: ' + mongooseUri + '. ' + err);
+  } else {
+    console.log ('*******************************Succeeded connected to: ' + mongooseUri);
+  }
+});
+
+//Schema of contacts
+var contactSchema = new mongoose.Schema({
+  name: {
+    first: String,
+    last: String
+  },
+  address:{type: String},
+  phone: {type: String}
+});
+
+//Compile schema into a model within the 'contacts' collection
+var contactModel = mongoose.model('contacts', contactSchema);
+
+// Creating sample user
+var sampleContact = new contactModel ({
+  name: { first: 'Fname', last: 'Lname' },
+  address: 'address',
+  phone: '987 654 321'
+});
+
+// Saving it to the database.  
+sampleContact.save(function (err) {if (err) console.log ('Error on save!')});

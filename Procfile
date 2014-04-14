@@ -1,1 +1,1 @@
-web: node addressBook.js
+web: node server.js

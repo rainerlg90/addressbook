@@ -1,5 +1,5 @@
 {
-  "name": "adressBook",
+  "name": "addressBook",
   "version": "0.0.0",
   "description": "address book app",
   "main": "addressBook.js",
@@ -22,6 +22,8 @@
   },
   "dependencies": {
     "logfmt": "~1.1.2",
-    "express": "~3.5.1"
+    "express": "~3.5.1",
+    "mongodb": "~1.4.0",
+	"mongoose":"3.8.8"
   }
 }
